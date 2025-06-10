@@ -25,6 +25,22 @@ app.use("/", mainRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 
+app.get('/upload-form', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head><title>Upload Form</title></head>
+      <body>
+        <h1>Upload Avatar</h1>
+        <form action="/api/products" method="post" enctype="multipart/form-data">
+          <input type="file" name="image" />
+          <button type="submit">Upload</button>
+        </form>
+      </body>
+    </html>
+  `);
+});
+
 app.listen(PORT, () => {
   console.log("🔥 Start vibin bruh!");
 });

@@ -8,7 +8,7 @@ export const getProducts = (req: Request, res: Response) => {
 export const createProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     res.status(200).json({
-      message: 'Image uploaded successfully!',
+      message: 'Image uploaded successfully!' + JSON.stringify(req.file?.originalname) || 'bruh',
       url: req.file?.path,
     });
   } catch (err) {
