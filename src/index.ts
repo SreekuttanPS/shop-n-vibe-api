@@ -25,7 +25,7 @@ app.use("/", mainRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 
-app.get('/upload-form', (req, res) => {
+app.get("/upload-form", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -33,7 +33,21 @@ app.get('/upload-form', (req, res) => {
       <body>
         <h1>Upload Avatar</h1>
         <form action="/api/products" method="post" enctype="multipart/form-data">
-          <input type="file" name="image" />
+          Name: <input type="text" name="name" />
+          <br />          
+          <br />
+          Description: <input type="text" name="description" />
+          <br />          
+          <br />
+          Price: <input type="text" name="price" />
+          <br />          
+          <br />
+          Stock: <input type="text" name="stock" />
+          <br />          
+          <br />
+          Image: <input type="file" name="image" />
+          <br />          
+          <br />
           <button type="submit">Upload</button>
         </form>
       </body>
