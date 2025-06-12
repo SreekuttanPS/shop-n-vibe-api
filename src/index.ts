@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import mainRoute from "./routes/main.routes";
-import userRoutes from "./routes/api/user.routes";
-import productRoutes from "./routes/api/product.routes";
 
 dotenv.config();
 
@@ -13,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const dbUri = process.env.MONGO_URI;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Connect to MongoDB
 mongoose
@@ -20,40 +19,7 @@ mongoose
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Routes.
 app.use("/", mainRoute);
-app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
-
-app.get("/upload-form", (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head><title>Upload Form</title></head>
-      <body>
-        <h1>Upload Avatar</h1>
-        <form action="/api/products" method="post" enctype="multipart/form-data">
-          Name: <input type="text" name="name" />
-          <br />          
-          <br />
-          Description: <input type="text" name="description" />
-          <br />          
-          <br />
-          Price: <input type="text" name="price" />
-          <br />          
-          <br />
-          Stock: <input type="text" name="stock" />
-          <br />          
-          <br />
-          Image: <input type="file" name="image" />
-          <br />          
-          <br />
-          <button type="submit">Upload</button>
-        </form>
-      </body>
-    </html>
-  `);
-});
 
 app.listen(PORT, () => {
   console.log("🔥 Start vibin bruh!");

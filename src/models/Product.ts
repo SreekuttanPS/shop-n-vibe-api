@@ -45,8 +45,8 @@ const productSchema = new Schema<IProduct>(
       type: String,
       required: true,
       trim: true,
-      enum: ['clothing_men', 'clothing_women', 'electronics', 'accessories_men', 'accessories_women', 'furnitures'],
-      default: 'clothing_men',
+      enum: ['clothing_men', 'clothing_women', 'electronics', 'accessories_men', 'accessories_women', 'furnitures', 'others'],
+      default: 'others',
     },
     stock: {
       type: Number,
