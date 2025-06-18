@@ -13,8 +13,8 @@ const router = Router();
 router.get("/create-product", (_req, res) => {
   res.send(productPage);
 });
-// router.post("/create-product", upload.single("image"), productValidationRules, validator, createProduct);
-router.post("/create-product", upload.single("image"), verifyAdmin, testingProductApi);
+router.post("/create-product", upload.single("image"), productValidationRules, validator, createProduct);
+// router.post("/create-product", upload.single("image"), verifyAdmin, testingProductApi);
 
 router.get("/admin-login", (_req, res) => {
   res.send(adminPage);
