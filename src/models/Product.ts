@@ -9,6 +9,8 @@ export interface IProduct extends Document {
   category: string;
   stock: number;
   tags?: string[];
+  rating?: number;
+  rateCount?: number;
   isAvailable?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
@@ -45,8 +47,8 @@ const productSchema = new Schema<IProduct>(
       type: String,
       required: true,
       trim: true,
-      enum: ['clothing_men', 'clothing_women', 'electronics', 'accessories_men', 'accessories_women', 'furnitures', 'others'],
-      default: 'others',
+      enum: ["clothing_men", "clothing_women", "electronics", "accessories_men", "accessories_women", "furnitures", "others"],
+      default: "others",
     },
     stock: {
       type: Number,
@@ -56,6 +58,14 @@ const productSchema = new Schema<IProduct>(
     tags: {
       type: [String],
       default: [],
+    },
+    rating: {
+      type: Number,
+      min: 0,
+    },
+    rateCount: {
+      type: Number,
+      min: 0,
     },
     isAvailable: {
       type: Boolean,
