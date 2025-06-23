@@ -14,7 +14,6 @@ export const getProductById = async (req: Request, res: Response) => {
     res.status(200).json(product);
     return;
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: "Server error" });
     return;
   }
@@ -68,11 +67,9 @@ export const getProducts = async (req: Request, res: Response) => {
     }
 
     const products = await Product.find(filter);
-    console.log(products);
     res.status(200).json(products);
     return;
   } catch (error) {
-    console.error("Error fetching products:", error);
     res.status(500).json({ message: "Server Error" });
     return;
   }

@@ -10,11 +10,6 @@ export const createAdmin = async (req: Request, res: Response): Promise<void> =>
     const password = req?.body?.password;
     const token = req?.body?.token;
 
-    console.log('req: ', req);
-    console.log('token: ', token);
-    console.log('username: ', username);
-    console.log('password: ', password);
-
     if (token?.toString() === process.env.CREATE_ADMIN) {
       const admin = new Admin({ username, password });
       await admin.save();
@@ -23,7 +18,6 @@ export const createAdmin = async (req: Request, res: Response): Promise<void> =>
       res.status(400).json({ error: "Invalid Token! Leave the platform bruh it ain't for ya." });
     }
   } catch (err) {
-    console.error(err);
     res.status(400).json({ error: "Failed to create user, Bruh!" });
   }
 };
@@ -60,7 +54,6 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
         },
         async (error, result) => {
           if (error && !result) {
-            console.log(error);
             res.status(500).json({ error: "Ayo!! Error uploading to Cloudinary" });
             return;
           } else {
@@ -83,7 +76,6 @@ export const createProduct = async (req: Request, res: Response): Promise<void> 
               res.status(201).json(product);
               return;
             } catch (err) {
-              console.error(err);
               res.status(400).json({ error: "Create user failed miserably bruh." });
               return;
             }
@@ -116,7 +108,6 @@ export const testingProductApi = async (req: Request, res: Response): Promise<vo
       res.status(201).json({ message: "Product created successfully! You did it homie!", data: payload }).redirect("/upload-form");
       return;
     } catch (err) {
-      console.error(err);
       res.status(400).json({ error: "User creation failed bruh!" });
       return;
     }
