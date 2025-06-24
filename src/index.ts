@@ -11,17 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const dbUri = process.env.MONGO_URI;
 
-const allowedOrigins = process.env.CORS_ORIGIN?.split(",") || [];
+const allowedOrigins = process.env.CORS_ORIGIN?.split(',') || [];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
 );
